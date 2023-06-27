@@ -1,0 +1,18 @@
+{
+  "name": "tacss",
+  "author": "gnuk",
+  "version": "0.0.1",
+  "description": "Like codepen",
+  "license": "unknown - please ask author",
+  "private": true,
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.3.9"
+  }
+}
