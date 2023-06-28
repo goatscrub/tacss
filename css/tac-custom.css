@@ -1,0 +1,494 @@
+/* TODO: groupServices:false */
+/*
+if (tarteaucitron) {
+    if (narrow) {
+        document.querySelector("#tarteaucitronAlertBig").classList.add("narrow")
+    }
+}
+*/
+
+:root {
+    --c-alertBig-bg: #fff;
+    --margin: 1rem;
+    --c-green: #009e2f;
+    --c-blue: #2d5cc9;
+    --c-red: #d02346;
+    --c-brown: #6d4b20;
+}
+
+#tarteaucitronRoot * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#tarteaucitronRoot {
+    font-size: 1rem;
+    background-color: gold;
+    color: #222;
+}
+
+#tarteaucitron button.tarteaucitron-toggle-group {
+    display: inline-block;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* #tarteaucitron button.tarteaucitron-toggle-group, */
+#tarteaucitron a {
+    --c: crimson;
+    color: var(--c);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: var(--margin);
+    border-bottom: 1px solid var(--c);
+}
+
+/* #tarteaucitron button.tarteaucitron-toggle-group:hover, */
+#tarteaucitron a:hover {
+    transition: none;
+    text-decoration: none;
+    border-bottom: 4px solid var(--c);
+}
+
+#tarteaucitron {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    width: 80%;
+    max-width: 80ch;
+    max-height: 90%;
+    overflow: auto;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    box-shadow: 0 0 12px 3px #0005;
+}
+
+#tarteaucitronPremium {
+    background-color: crimson;
+    width: 1rem;
+    height: 1rem;
+    display: block;
+}
+
+#tarteaucitronServices {
+    font-size: 0.9rem;
+    padding: var(--margin);
+    padding-bottom: 0;
+}
+
+#tarteaucitronPercentage {
+    background-color: burlywood;
+    height: 1rem;
+    width: 1rem;
+}
+
+#tarteaucitronIcon {
+    background-color: tan;
+}
+
+#tarteaucitronAlertBig {
+    position: fixed;
+    margin: var(--margin);
+    left: 0;
+    right: 0;
+    background-color: var(--c-alertBig-bg);
+    padding: var(--margin);
+    border-radius: 3px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0 12px 3px #0005;
+}
+
+.tarteaucitronAlertBigTop {
+    top: var(--margin);
+}
+
+.tarteaucitronAlertBigBottom {
+    bottom: var(--margin);
+}
+
+#tarteaucitronAlertBig.narrow {
+    left: 50%;
+    translate: -50%;
+    right: unset;
+}
+
+
+#tarteaucitronRoot #tac_title::before,
+#dialogTitle,
+#tarteaucitronDisclaimerAlert::before {
+    content: "Cookie(s)";
+    display: block;
+    font-size: 2.2rem;
+    margin-bottom: var(--margin);
+    padding-left: 3rem;
+    background-image: url(/assets/cookie.svg);
+    background-size: 2.4rem;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    text-shadow: 2px 2px 2px #bbb;
+}
+
+#tarteaucitronRoot #tac_title::before {
+    content: "";
+    display: inline;
+    font-size: var(--title-height);
+    line-height: var(--title-height);
+}
+
+#dialogTitle,
+#tarteaucitronDisclaimerAlert {
+    display: block;
+    margin-bottom: var(--margin);
+}
+
+#tarteaucitron button,
+#tarteaucitronAlertBig button,
+#tarteaucitronCloseCross {
+    --c: #aaa;
+    font-weight: bold;
+    padding: 0.4rem 0.8rem;
+    margin-left: 1rem;
+    background-color: transparent;
+    border: 1px solid var(--c);
+    border-radius: 2px;
+    transition-duration: 200ms;
+    transition-property: background-color, border, color, opacity;
+}
+
+#tarteaucitronAlertBig button {
+    margin: 0 var(--margin) var(--margin) 0;
+}
+
+#tarteaucitronAlertBig button#tarteaucitronPrivacyUrl {
+    margin-bottom: 0;
+}
+
+/*  In AlertBig:
+    Personalize2 => "Tout accepter"
+    CloseAlert => "Personnaliser"
+    AllDenied2 => "Tout refuser"
+    PrivacyUrl => "Politique de confidentialité"
+*/
+#tarteaucitron button.tarteaucitronDeny,
+#tarteaucitron button.tarteaucitronAllow,
+#tarteaucitron button#tarteaucitronPrivacyUrlDialog,
+#tarteaucitronAlertBig button#tarteaucitronPersonalize2,
+#tarteaucitronAlertBig button#tarteaucitronCloseAlert,
+#tarteaucitronAlertBig button#tarteaucitronAllDenied2,
+#tarteaucitronAlertBig button#tarteaucitronPrivacyUrl {
+    --c: var(--c-green);
+    color: var(--c);
+    border-color: var(--c);
+}
+
+#tarteaucitronAlertBig button#tarteaucitronCloseAlert {
+    --c: var(--c-blue);
+}
+
+#tarteaucitron #tarteaucitronServices button.tarteaucitronDeny,
+#tarteaucitron #tarteaucitronServices .tarteaucitronIsDenied button.tarteaucitronDeny,
+#tarteaucitronAlertBig button#tarteaucitronAllDenied2 {
+    --c: var(--c-red);
+}
+
+
+#tarteaucitron button#tarteaucitronPrivacyUrlDialog,
+#tarteaucitronAlertBig button#tarteaucitronPrivacyUrl {
+    display: block;
+    --c: var(--c-brown);
+    margin-bottom: 0;
+}
+
+#tarteaucitron button#tarteaucitronPrivacyUrlDialog {
+    margin: auto;
+    margin-top: var(--margin);
+}
+
+#tarteaucitron #tarteaucitronServices button.tarteaucitronAllow:hover,
+#tarteaucitron #tarteaucitronServices button.tarteaucitronDeny:hover,
+#tarteaucitron #tarteaucitronServices .tarteaucitronIsAllowed button.tarteaucitronAllow,
+#tarteaucitron #tarteaucitronServices .tarteaucitronIsDenied button.tarteaucitronDeny,
+#tarteaucitron #tarteaucitronServices .tarteaucitronIsAllowed button.tarteaucitronAllow:hover,
+#tarteaucitron #tarteaucitronServices .tarteaucitronIsDenied button.tarteaucitronDeny:hover,
+#tarteaucitron button#tarteaucitronPrivacyUrlDialog:hover,
+#tarteaucitronAlertBig button#tarteaucitronPersonalize2:hover,
+#tarteaucitronAlertBig button#tarteaucitronCloseAlert:hover,
+#tarteaucitronAlertBig button#tarteaucitronAllDenied2:hover,
+#tarteaucitronAlertBig button#tarteaucitronPrivacyUrl:hover {
+    color: #fff;
+    background-color: var(--c);
+    box-shadow: 0 0 3px #aaa;
+}
+
+#tarteaucitron .tarteaucitronLine.tarteaucitronIsAllowed .tarteaucitronAsk button {
+    background-image: none;
+}
+
+#tarteaucitron button[disabled],
+#tarteaucitron button[disabled]:hover {
+    --c: #aaa;
+    color: var(--c);
+    background: repeating-linear-gradient(135deg, transparent 0, transparent 1ch, #aaa3 1ch, #aaa3 2ch);
+    box-shadow: none;
+    cursor: not-allowed;
+    visibility: visible !important;
+}
+
+/* START Close button */
+#tarteaucitron #tarteaucitronClosePanel,
+#tarteaucitronAlertBig #tarteaucitronCloseCross {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.8rem;
+    width: 4ch;
+    height: 4ch;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: #d8d8d8;
+    border-radius: 0 0 0 5px;
+    color: transparent;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#tarteaucitronRoot #tarteaucitronClosePanel::after,
+#tarteaucitronCloseCross::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.8rem;
+    cursor: pointer;
+    height: 4ch;
+    width: 4ch;
+    mask-image: url(/assets/cross.svg);
+    mask-size: contain;
+    -webkit-mask-image: url(/assets/cross.svg);
+    -webkit-mask-size: contain;
+    background-color: #aaa;
+}
+
+#tarteaucitronRoot #tarteaucitronClosePanel:hover,
+#tarteaucitronCloseCross:hover {
+    background-color: #d8d8d8;
+    border-color: #c8c8c8;
+}
+
+#tarteaucitronRoot #tarteaucitronClosePanel:hover::after,
+#tarteaucitronCloseCross:hover::after {
+    background-color: #333;
+}
+
+/* END Close button */
+#tarteaucitronRoot #tarteaucitronClosePanel {
+    background-color: #fff;
+}
+
+.tarteaucitronHidden {
+    display: none;
+}
+
+#tarteaucitron .tarteaucitronBorder {
+    margin-top: var(--margin);
+}
+
+#tarteaucitron .clear {
+    clear: none;
+}
+
+#tarteaucitronNoServicesTitle {
+    background-color: gold;
+}
+
+#tarteaucitron .tarteaucitronH2 {
+    display: block;
+    font-size: 1.2rem;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine #tarteaucitronInfo,
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronName,
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronAsk {
+    background-color: #f0ebe6;
+    padding: var(--margin);
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronName,
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronAsk {
+    background-color: #ddd3c9;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronAsk button {
+    margin: 0 1rem 0 0;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine #tarteaucitronInfo {
+    flex: 0 0 100%;
+    border-radius: 3px 3px 0 0;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronName {
+    flex-grow: 1;
+    flex-shrink: 1;
+    border-radius: 0 0 0 3px;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronAsk {
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius: 0 0 3px 0;
+}
+
+#tarteaucitronRoot br,
+#tarteaucitron .tarteaucitronInfoBox,
+#tarteaucitron .tarteaucitron-spacer-20,
+#tarteaucitron .tarteaucitronName>span.tarteaucitronReadmoreSeparator {
+    display: none;
+}
+
+#tarteaucitron .tarteaucitronAsk {
+    text-align: right;
+}
+
+#tarteaucitron li:first-of-type {
+    /* margin-top: var(--margin); */
+    /* margin-bottom: var(--margin); */
+}
+
+#tarteaucitron .tarteaucitronHidden .tarteaucitronName>span:not([class])::before,
+#tarteaucitron .tarteaucitronHidden .tarteaucitronName>span[class=""]::before,
+#tarteaucitron .tarteaucitronHidden .tarteaucitronName>span.tacCurrentStatus::after {
+    content: "";
+    display: block;
+}
+
+#tarteaucitron .tarteaucitronIsAllowed span.tacCurrentStatus,
+#tarteaucitron .tarteaucitronIsDenied span.tacCurrentStatus {
+    --c: var(--c-red);
+    display: inline-block;
+    font-size: 0.7rem;
+    color: var(--c);
+    margin-left: calc(var(--margin) / 2);
+    padding: calc(1ch/2);
+    text-transform: uppercase;
+}
+
+#tarteaucitron .tarteaucitronIsAllowed span.tacCurrentStatus {
+    --c: var(--c-green);
+    color: var(--c);
+}
+
+#tarteaucitron span.tarteaucitronListCookies {
+    display: block;
+}
+
+#tarteaucitron #tarteaucitronServices ul li ul li.tarteaucitronLine {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--margin);
+}
+
+#tarteaucitron #tarteaucitronServices ul li ul li.tarteaucitronLine .tarteaucitronName {
+    flex: 1;
+}
+
+#tarteaucitron #tarteaucitronServices ul li ul[id] li.tarteaucitronLine:first-of-type {
+    margin-top: var(--margin);
+    border-top: 1px solid #ccc;
+}
+
+#tarteaucitron #tarteaucitronServices ul li ul li.tarteaucitronLine:last-child {
+    border-radius: 0 0 6px 6px;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronBorder>ul>li {
+    padding: var(--margin);
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    background-color: #eee;
+}
+
+#tarteaucitron #tarteaucitronServices ul li ul li {
+    padding-left: var(--margin);
+    margin-bottom: 0;
+    background-color: #ddd;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronTitle button,
+#tarteaucitron #tarteaucitronServices ul li ul span.tarteaucitronH3 {
+    --c: #555;
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: calc(var(--margin) /2);
+    font-size: 0.8rem;
+    color: var(--c);
+    background-color: #fff;
+    border-radius: 2rem;
+}
+
+#tarteaucitron #tarteaucitronServices ul li ul:first-of-type li {
+    background-color: #eee;
+    border-radius: 0 !important;
+}
+
+#tarteaucitron #tarteaucitronServices ul li ul:first-of-type li {
+    padding: 0 var(--margin) 0 0;
+}
+
+#tarteaucitron #tarteaucitronServices #tarteaucitronServicesTitle_mandatory .tarteaucitronTitle button,
+#tarteaucitron #tarteaucitronServices ul li ul:first-of-type span.tarteaucitronH3 {
+    margin-bottom: var(--margin);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.9rem;
+    color: white;
+    background-color: #35254d;
+    border: 1px solid rgb(84, 50, 147);
+    text-shadow: 0 0 6px #5822b5;
+}
+
+#tarteaucitronRoot ul#tarteaucitronServices_mandatory .tarteaucitronAsk button.tarteaucitronDeny {
+    visibility: visible !important;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronBorder>ul>li#tarteaucitronServicesTitle_mandatory {
+    /* border: 1px solid #239bd7; */
+    border: none;
+}
+
+/* #tarteaucitron #tarteaucitronServices .tarteaucitronBorder>ul>li#tarteaucitronServicesTitle_mandatory,
+#tarteaucitron li#tarteaucitronServicesTitle_mandatory ul#tarteaucitronServices_mandatory li.tarteaucitronLine {
+    background-color: #d5edff;
+} */
+
+#tarteaucitron #tarteaucitronServices ul li ul#tarteaucitronServices_mandatory li.tarteaucitronLine {
+    border-top: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#tarteaucitron #tarteaucitronServices ul li ul#tarteaucitronServices_mandatory li.tarteaucitronLine .tarteaucitronH3 {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    text-shadow: none;
+    border: none;
+    color: #222;
+}
