@@ -1,11 +1,11 @@
-/* TODO: groupServices:false */
-/*
+@import url(/fonts/fonts.css);
+
+/* TODO: groupServices:false
 if (tarteaucitron) {
     if (narrow) {
         document.querySelector("#tarteaucitronAlertBig").classList.add("narrow")
     }
-}
-*/
+} */
 
 :root {
     --c-alertBig-bg: #fff;
@@ -13,30 +13,63 @@ if (tarteaucitron) {
     --c-green: #009e2f;
     --c-blue: #2d5cc9;
     --c-red: #d02346;
-    --c-brown: #6d4b20;
+    --c-brown: #694c35;
 }
 
-#tarteaucitronRoot * {
+@font-face {
+    font-family: "open-sans";
+    src: url(/fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+#tarteaucitronRoot *,
+#tarteaucitronRoot *::before,
+#tarteaucitronRoot *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 #tarteaucitronRoot {
-    font-size: 1rem;
-    background-color: gold;
+    font-family: "open-sans";
     color: #222;
+    background-color: gold;
+}
+
+input,
+textarea,
+button {
+    font-family: inherit;
+}
+
+#tarteaucitron ul {
+    list-style-type: none;
+}
+
+#tarteaucitron #tarteaucitronServicesTitle_mandatory .tarteaucitronTitle {
+    display: initial;
 }
 
 #tarteaucitron button.tarteaucitron-toggle-group {
-    display: inline-block;
+    display: block;
     border: none;
     padding: 0;
     margin: 0;
     cursor: pointer;
+    font-weight: bold;
+    line-height: 1.4;
+    /* padding: 0.4rem 1rem; */
+    border-radius: 2px;
 }
 
-/* #tarteaucitron button.tarteaucitron-toggle-group, */
+#tarteaucitron button.tarteaucitron-toggle-group::after {
+    content: '\002B';
+    margin-left: 1ch;
+}
+
+#tarteaucitron .tarteaucitronIsExpanded button.tarteaucitron-toggle-group::after {
+    content: '\2212';
+}
+
 #tarteaucitron a {
     --c: crimson;
     color: var(--c);
@@ -44,18 +77,17 @@ if (tarteaucitron) {
     font-weight: 600;
     margin-right: var(--margin);
     border-bottom: 1px solid var(--c);
+    text-decoration: underline solid 1px;
+    text-underline-offset: 0.2rem;
 }
 
-/* #tarteaucitron button.tarteaucitron-toggle-group:hover, */
 #tarteaucitron a:hover {
-    transition: none;
-    text-decoration: none;
-    border-bottom: 4px solid var(--c);
+    text-decoration-thickness: 3px;
 }
 
 #tarteaucitron {
     position: fixed;
-    top: 50%;
+    top: 50% !important;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: auto;
@@ -67,6 +99,13 @@ if (tarteaucitron) {
     border: 1px solid #e0e0e0;
     border-radius: 3px;
     box-shadow: 0 0 12px 3px #0005;
+}
+
+#tarteaucitron .tarteaucitronBorder {
+    background-color: #eee;
+    padding: 3px 0;
+    margin-bottom: var(--margin);
+    border-radius: 3px;
 }
 
 #tarteaucitronPremium {
@@ -118,11 +157,20 @@ if (tarteaucitron) {
     right: unset;
 }
 
+#tarteaucitronAlertBig.narrowLeft {
+    left: var(--margin);
+    right: unset;
+}
+
+#tarteaucitronAlertBig.narrowRight {
+    left: unset;
+    right: var(--margin);
+}
 
 #tarteaucitronRoot #tac_title::before,
 #dialogTitle,
 #tarteaucitronDisclaimerAlert::before {
-    content: "Cookie(s)";
+    content: "Cookies";
     display: block;
     font-size: 2.2rem;
     margin-bottom: var(--margin);
@@ -153,7 +201,7 @@ if (tarteaucitron) {
     --c: #aaa;
     font-weight: bold;
     padding: 0.4rem 0.8rem;
-    margin-left: 1rem;
+    margin-left: calc(var(--margin) / 2);
     background-color: transparent;
     border: 1px solid var(--c);
     border-radius: 2px;
@@ -162,14 +210,16 @@ if (tarteaucitron) {
 }
 
 #tarteaucitronAlertBig button {
-    margin: 0 var(--margin) var(--margin) 0;
+    --half-margin: calc(var(--margin) / 2);
+    margin: 0 var(--half-margin) var(--half-margin) 0;
 }
 
 #tarteaucitronAlertBig button#tarteaucitronPrivacyUrl {
     margin-bottom: 0;
 }
 
-/*  In AlertBig:
+/*  In AlertBig div:
+    Personalize => "Personnaliser quand CTA false"
     Personalize2 => "Tout accepter"
     CloseAlert => "Personnaliser"
     AllDenied2 => "Tout refuser"
@@ -178,6 +228,7 @@ if (tarteaucitron) {
 #tarteaucitron button.tarteaucitronDeny,
 #tarteaucitron button.tarteaucitronAllow,
 #tarteaucitron button#tarteaucitronPrivacyUrlDialog,
+#tarteaucitronAlertBig button#tarteaucitronPersonalize,
 #tarteaucitronAlertBig button#tarteaucitronPersonalize2,
 #tarteaucitronAlertBig button#tarteaucitronCloseAlert,
 #tarteaucitronAlertBig button#tarteaucitronAllDenied2,
@@ -187,6 +238,7 @@ if (tarteaucitron) {
     border-color: var(--c);
 }
 
+#tarteaucitronAlertBig button#tarteaucitronPersonalize,
 #tarteaucitronAlertBig button#tarteaucitronCloseAlert {
     --c: var(--c-blue);
 }
@@ -200,14 +252,17 @@ if (tarteaucitron) {
 
 #tarteaucitron button#tarteaucitronPrivacyUrlDialog,
 #tarteaucitronAlertBig button#tarteaucitronPrivacyUrl {
-    display: block;
-    --c: var(--c-brown);
-    margin-bottom: 0;
+    /* display: block; */
+    all: unset;
+    color: var(--c-brown);
+    font-weight: 600;
+    text-decoration: underline solid 1px;
+    text-underline-offset: 0.25rem;
 }
 
-#tarteaucitron button#tarteaucitronPrivacyUrlDialog {
-    margin: auto;
-    margin-top: var(--margin);
+#tarteaucitron button#tarteaucitronPrivacyUrlDialog:hover,
+#tarteaucitronAlertBig button#tarteaucitronPrivacyUrl:hover {
+    text-decoration-thickness: 3px;
 }
 
 #tarteaucitron #tarteaucitronServices button.tarteaucitronAllow:hover,
@@ -216,11 +271,10 @@ if (tarteaucitron) {
 #tarteaucitron #tarteaucitronServices .tarteaucitronIsDenied button.tarteaucitronDeny,
 #tarteaucitron #tarteaucitronServices .tarteaucitronIsAllowed button.tarteaucitronAllow:hover,
 #tarteaucitron #tarteaucitronServices .tarteaucitronIsDenied button.tarteaucitronDeny:hover,
-#tarteaucitron button#tarteaucitronPrivacyUrlDialog:hover,
+#tarteaucitronAlertBig button#tarteaucitronPersonalize:hover,
 #tarteaucitronAlertBig button#tarteaucitronPersonalize2:hover,
 #tarteaucitronAlertBig button#tarteaucitronCloseAlert:hover,
-#tarteaucitronAlertBig button#tarteaucitronAllDenied2:hover,
-#tarteaucitronAlertBig button#tarteaucitronPrivacyUrl:hover {
+#tarteaucitronAlertBig button#tarteaucitronAllDenied2:hover {
     color: #fff;
     background-color: var(--c);
     box-shadow: 0 0 3px #aaa;
@@ -230,14 +284,15 @@ if (tarteaucitron) {
     background-image: none;
 }
 
-#tarteaucitron button[disabled],
-#tarteaucitron button[disabled]:hover {
+#tarteaucitron #tarteaucitronServices_mandatory .tarteaucitronAsk button.tarteaucitronAllow,
+#tarteaucitron #tarteaucitronServices_mandatory .tarteaucitronAsk button.tarteaucitronDeny {
     --c: #aaa;
     color: var(--c);
     background: repeating-linear-gradient(135deg, transparent 0, transparent 1ch, #aaa3 1ch, #aaa3 2ch);
     box-shadow: none;
     cursor: not-allowed;
     visibility: visible !important;
+    opacity: 0.6;
 }
 
 /* START Close button */
@@ -250,10 +305,7 @@ if (tarteaucitron) {
     font-size: 0.8rem;
     width: 4ch;
     height: 4ch;
-    border-width: 0 0 1px 1px;
-    border-style: solid;
-    border-color: #d8d8d8;
-    border-radius: 0 0 0 5px;
+    border: none;
     color: transparent;
     margin: 0;
     padding: 0;
@@ -276,12 +328,8 @@ if (tarteaucitron) {
     -webkit-mask-image: url(/assets/cross.svg);
     -webkit-mask-size: contain;
     background-color: #aaa;
-}
-
-#tarteaucitronRoot #tarteaucitronClosePanel:hover,
-#tarteaucitronCloseCross:hover {
-    background-color: #d8d8d8;
-    border-color: #c8c8c8;
+    transition-duration: 250ms;
+    transition-property: background;
 }
 
 #tarteaucitronRoot #tarteaucitronClosePanel:hover::after,
@@ -329,11 +377,15 @@ if (tarteaucitron) {
 
 #tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronName,
 #tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronAsk {
-    background-color: #ddd3c9;
+    border-top: 1px solid #ddd3c9;
 }
 
 #tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronAsk button {
-    margin: 0 1rem 0 0;
+    margin: 0 calc(var(--margin) / 2) 0 0;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronAsk button+button {
+    margin: 0 var(--margin) 0 0;
 }
 
 #tarteaucitron #tarteaucitronServices .tarteaucitronMainLine #tarteaucitronInfo {
@@ -364,11 +416,6 @@ if (tarteaucitron) {
     text-align: right;
 }
 
-#tarteaucitron li:first-of-type {
-    /* margin-top: var(--margin); */
-    /* margin-bottom: var(--margin); */
-}
-
 #tarteaucitron .tarteaucitronHidden .tarteaucitronName>span:not([class])::before,
 #tarteaucitron .tarteaucitronHidden .tarteaucitronName>span[class=""]::before,
 #tarteaucitron .tarteaucitronHidden .tarteaucitronName>span.tacCurrentStatus::after {
@@ -377,7 +424,8 @@ if (tarteaucitron) {
 }
 
 #tarteaucitron .tarteaucitronIsAllowed span.tacCurrentStatus,
-#tarteaucitron .tarteaucitronIsDenied span.tacCurrentStatus {
+#tarteaucitron .tarteaucitronIsDenied span.tacCurrentStatus,
+#tarteaucitron span.tacCurrentStatus {
     --c: var(--c-red);
     display: inline-block;
     font-size: 0.7rem;
@@ -389,11 +437,16 @@ if (tarteaucitron) {
 
 #tarteaucitron .tarteaucitronIsAllowed span.tacCurrentStatus {
     --c: var(--c-green);
-    color: var(--c);
 }
 
 #tarteaucitron span.tarteaucitronListCookies {
     display: block;
+}
+
+#tarteaucitron #tarteaucitronServices ul li ul[style*='display: block;'] {
+    background-color: #e8e8e8;
+    box-shadow: inset 0 0 5px #0003;
+    border-radius: 2px;
 }
 
 #tarteaucitron #tarteaucitronServices ul li ul li.tarteaucitronLine {
@@ -410,24 +463,24 @@ if (tarteaucitron) {
 
 #tarteaucitron #tarteaucitronServices ul li ul[id] li.tarteaucitronLine:first-of-type {
     margin-top: var(--margin);
-    border-top: 1px solid #ccc;
 }
 
 #tarteaucitron #tarteaucitronServices ul li ul li.tarteaucitronLine:last-child {
-    border-radius: 0 0 6px 6px;
+    border-radius: 0 0 3px 3px;
 }
 
 #tarteaucitron #tarteaucitronServices .tarteaucitronBorder>ul>li {
     padding: var(--margin);
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    background-color: #eee;
+}
+
+#tarteaucitron #tarteaucitronServices .tarteaucitronBorder>ul>li:last-of-type {
+    margin-bottom: var(--margin);
+    background-color: rgba(102, 51, 153, 0.466);
 }
 
 #tarteaucitron #tarteaucitronServices ul li ul li {
     padding-left: var(--margin);
     margin-bottom: 0;
-    background-color: #ddd;
 }
 
 #tarteaucitron #tarteaucitronServices .tarteaucitronTitle button,
@@ -443,7 +496,6 @@ if (tarteaucitron) {
 }
 
 #tarteaucitron #tarteaucitronServices ul li ul:first-of-type li {
-    background-color: #eee;
     border-radius: 0 !important;
 }
 
@@ -456,27 +508,22 @@ if (tarteaucitron) {
     margin-bottom: var(--margin);
     padding: 0.2rem 0.6rem;
     font-size: 0.9rem;
-    color: white;
-    background-color: #35254d;
-    border: 1px solid rgb(84, 50, 147);
-    text-shadow: 0 0 6px #5822b5;
+    color: #443e4c;
+    background-color: #dcd7e5;
+    border: none;
+    text-shadow: 0 0 5px #9b88bc;
 }
 
-#tarteaucitronRoot ul#tarteaucitronServices_mandatory .tarteaucitronAsk button.tarteaucitronDeny {
-    visibility: visible !important;
-    opacity: 0.6;
-    cursor: not-allowed;
+#tarteaucitron #tarteaucitronServices #tarteaucitronServicesTitle_mandatory .tarteaucitronTitle button {
+    line-height: 1.4;
+    font-weight: 400;
+    margin-left: 0;
 }
 
 #tarteaucitron #tarteaucitronServices .tarteaucitronBorder>ul>li#tarteaucitronServicesTitle_mandatory {
-    /* border: 1px solid #239bd7; */
     border: none;
+    padding-right: calc(var(--margin) * 2);
 }
-
-/* #tarteaucitron #tarteaucitronServices .tarteaucitronBorder>ul>li#tarteaucitronServicesTitle_mandatory,
-#tarteaucitron li#tarteaucitronServicesTitle_mandatory ul#tarteaucitronServices_mandatory li.tarteaucitronLine {
-    background-color: #d5edff;
-} */
 
 #tarteaucitron #tarteaucitronServices ul li ul#tarteaucitronServices_mandatory li.tarteaucitronLine {
     border-top: 0;
