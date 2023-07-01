@@ -307,6 +307,7 @@ button {
     height: 4ch;
     border: none;
     color: transparent;
+    background-color: transparent;
     margin: 0;
     padding: 0;
     overflow: hidden;
