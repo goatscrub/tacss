@@ -1,15 +1,15 @@
 tarteaucitron.init(
     {
-    "privacyUrl": "//afa.test:3000/privacy.policy.url", /* Privacy policy url */
+    "privacyUrl": "/privacy.policy.url", /* Privacy policy url */
     "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
     "cookieName": "tarteaucitron", /* Cookie name */
     "orientation": "bottom", /* Banner position (top - bottom) */
     "groupServices": true, /* Group services by category */
-    "showAlertSmall": true, /* Show the small banner on bottom right */
+    "showAlertSmall": false, /* Show the small banner on bottom right */
     "cookieslist": true, /* Show the cookie list */
     "closePopup": true, /* Show a close X on the banner */
     "showIcon": true, /* Show cookie icon to manage cookies */
-    //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
+    "iconSrc": "/assets/cookie.svg", /* Optionnal: URL or base64 encoded image */
     "iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
     "adblocker": false, /* Show a Warning if an adblocker is detected */
     "DenyAllCta" : true, /* Show the deny all button */
@@ -23,7 +23,7 @@ tarteaucitron.init(
     //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
     "readmoreLink": "", /* Change the default readmore link */
     "mandatory": true, /* Show a message about mandatory cookies */
-    "EXT_narrow":"narrow",
+    "EXT_narrow":"wide",
     }
 );
 // (tarteaucitron.job = tarteaucitron.job || []).push('youtube', 'twitter', 'facebook', 'amazon', 'instagram');

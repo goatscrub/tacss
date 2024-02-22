@@ -3,15 +3,21 @@
  |   http://www.browsersync.io/docs/options/
  */
 module.exports = {
-    files: ["**/*.css", "**/*.html", "**/*.js", "**/*.php"],
-    port: 5555,
+    files: ["**/*.css", "**/*.html", "**/*.js", "**/*.php", "**/*.json"],
     watch: true,
     server: false,
-    serveStatic: [{
-        route: '/fonts',
-        dir:'/home/gnuk/workflow/common/fonts/',
-    }],
+    serveStatic: [
+        {
+            route: '/fonts',
+            dir:'/home/gnuk/workflow/common/fonts/',
+        },
+        {
+            route: '/favicons',
+            dir:'/home/gnuk/workflow/common/favicons/',
+        }
+    ],
     ui:false,
     open: false,
     notify: false,
+    ghostMode: false,
 }
