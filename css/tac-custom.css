@@ -145,9 +145,9 @@ if (tarteaucitron) {
 
 #tarteaucitronAlertBig {
     position: fixed;
-    margin: var(--margin);
-    left: 0;
-    right: 0;
+    left: var(--margin);
+    right: var(--margin);
+    bottom: var(--margin);
     background-color: var(--c-alertBig-bg);
     padding: var(--margin);
     border-radius: 3px;
